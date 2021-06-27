@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Sriracha&display=swap');
+
 * {
     margin: 0;
     padding: 0;
@@ -50,17 +52,126 @@
 .cross {
     width: 100%;
     height: 100%;
-    background: red;
+    background: pink;
+    position: relative;
+    transition: .3s;
+}
+
+.cross::before {
+    content: '';
+    position:absolute;
+    width: 100%;
+    height: 10%;
+    top: 45%;
+    border-radius: 1em;
+    background-color: #333;
+    animation-duration: 0.5s;
+    animation-name: cross-top;
+    transform: rotate(45deg);
+}
+
+.cross::after {
+    content: '';
+    position:absolute;
+    width: 100%;
+    height: 10%;
+    border-radius: 1em;
+    background-color: #333;
+    bottom: 45%;
+    animation-duration: 0.5s;
+    animation-name: cross-bottom;
+    transform: rotate(-45deg);
+}
+
+@keyframes cross-top {
+    from {
+        top: 10%;
+        transform: rotate(0deg);
+    }
+    to {
+        top: 45%;
+        transform: rotate(45deg);
+    }
+}
+
+@keyframes cross-bottom {
+    from {
+        bottom: 10%;
+        transform: rotate(0deg);
+    }
+    to {
+        bottom: 45%;
+        transform: rotate(-45deg);
+    }
 }
 
 .nought {
     width: 100%;
     height: 100%;
-    background: green;
+    background: lightgreen;
+    position: relative;
+}
+
+.nought::before {
+    content: '';
+    position: absolute;
+    top: 10%;
+    left: 10%;
+    width: 80%;
+    height: 80%;
+    border-radius: 50%;
+    background: #333;
+    
+    animation-duration: 0.5s;
+    animation-name: growt;
+}
+
+.nought::after {
+    content: '';
+    position: absolute;
+    top: 20%;
+    left: 20%;
+    width: 60%;
+    height: 60%;
+    border-radius: 50%;
+    background: lightgreen;
+    
+    animation-duration: 0.5s;
+    animation-name: growt;
+}
+
+@keyframes growt {
+    from {
+        transform: scale(0);
+    }
+    to {
+        transform: none;
+    }
 }
 
 .draw {
     width: 100%;
     height: 100%;
-    background: yellow;
+    background: lightyellow;
+
+    position: relative;
+}
+
+.draw::before {
+    content: 'Draw';
+    position: absolute;
+    display: inline-block;
+    width: fit-content;
+    height: fit-content;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    margin: auto;
+
+    font-size: 6em;
+    font-family: 'Sriracha', cursive;
+    
+    animation-duration: 0.5s;
+    animation-name: growt;
 }
