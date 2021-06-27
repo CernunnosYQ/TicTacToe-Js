@@ -24,6 +24,15 @@
     box-shadow: 0 0 8px rgba(0, 0, 0, 60%);
 }
 
+.scoreboard {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    font-size: 1.5em;
+    padding-bottom: .5em;
+}
+
 .board {
     background: #2f2f2f;
 

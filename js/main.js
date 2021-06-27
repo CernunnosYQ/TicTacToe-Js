@@ -1,12 +1,20 @@
 const board_size = 3;
 const board_element = document.getElementById('board');
+const scoreboard_element = document.getElementById('scoreboard')
+
+let score_nought = 0;
+let score_cross = 0;
+let score_draw = 0;
 
 let board_state = [];
 let actual_player = 'nought';
 
 function startGame () {
     board_element.innerHTML = '';
+    scoreboard_element.innerHTML = '';
     board_state = createBoardState(board_size);
+
+    fillScoreboard();
     
     for (let x = 0; x < board_size; x++) {
         for (let y = 0; y < board_size; y++) {
@@ -33,6 +41,21 @@ function createBoardState(size) {
     }
     
     return new_board_state;
+}
+
+function fillScoreboard() {
+    let score_nought_element = document.createElement('div');
+    score_nought_element.innerHTML = `<i class="far fa-circle"></i> <span>${score_nought}</span>`
+
+    let score_draw_element = document.createElement('div');
+    score_draw_element.innerHTML = `<i class="fas fa-balance-scale"></i> <span>${score_draw}</span>`
+
+    let score_cross_element = document.createElement('div');
+    score_cross_element.innerHTML = `<i class="fas fa-times"></i> <span>${score_cross}</span>`
+
+    scoreboard_element.appendChild(score_nought_element);
+    scoreboard_element.appendChild(score_draw_element);
+    scoreboard_element.appendChild(score_cross_element);
 }
 
 function createMark (tile_id) {
@@ -141,8 +164,19 @@ function gameOver(winner) {
     mark.classList.add(winner);
 
     mark.addEventListener('click', () => { startGame() });
+    updateScore(winner);
 
     board_element.appendChild(mark);
+}
+
+function updateScore(winner) {
+    if (winner === 'nought') {
+        score_nought++;
+    } else if (winner === 'cross') {
+        score_cross++;
+    } else {
+        score_draw++;
+    }
 }
 
 window.addEventListener('DOMContentLoaded', () => { startGame(); });
